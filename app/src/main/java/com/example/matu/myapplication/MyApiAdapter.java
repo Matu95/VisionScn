@@ -1,6 +1,6 @@
 package com.example.matu.myapplication;
 
-import com.example.matu.myapplication.interfaces.MyApiService;
+import com.example.matu.myapplication.interfaces.ArticleService;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -9,9 +9,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyApiAdapter {
 
-    private static MyApiService API_SERVICE;
+    private static ArticleService API_SERVICE;
 
-    public static MyApiService getApiService() {
+    public static ArticleService getApiService() {
 
         // Creamos un interceptor y le indicamos el log level a usar
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -21,7 +21,7 @@ public class MyApiAdapter {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(logging);
 
-        String baseUrl = "https://reqres.in/api/";
+        String baseUrl = "http://localhost:3000/";
 
         if (API_SERVICE == null) {
             Retrofit retrofit = new Retrofit.Builder()
@@ -29,7 +29,8 @@ public class MyApiAdapter {
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(httpClient.build()) // <-- usamos el log level
                     .build();
-            API_SERVICE = retrofit.create(MyApiService.class);
+
+            API_SERVICE = retrofit.create(ArticleService.class);
         }
 
         return API_SERVICE;
