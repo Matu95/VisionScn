@@ -15,6 +15,13 @@ public class Article {
     @Expose
     private String code;
 
+    public Article(int id, String name, String code) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.code = code;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -39,4 +46,8 @@ public class Article {
         this.code = code;
     }
 
+    @Override
+    public String toString() {
+        return this.id + ". " + this.name + " [$" + this.code + "]";
+    }
 }

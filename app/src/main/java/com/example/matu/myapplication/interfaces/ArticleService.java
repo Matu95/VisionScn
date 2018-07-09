@@ -10,6 +10,6 @@ import retrofit2.http.GET;
 public interface ArticleService {
 
     @GET("articles")
-    Call<Article> getArticles();
+    Call<List<Article>> getArticles();
 
 }
